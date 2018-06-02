@@ -1,0 +1,8 @@
+{
+  "name": "Crypto_Tracker",
+  "app_id": "fb226a76",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
