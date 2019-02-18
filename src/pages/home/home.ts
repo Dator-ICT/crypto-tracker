@@ -105,7 +105,7 @@ export class HomePage {
                   tooltips: {
                     callbacks: {
                         label: function(tooltipItems, data) {
-                            return "$" + tooltipItems.yLabel.toString();
+                            return "ZAR" + tooltipItems.yLabel.toString();
                         }
                       }
                     },
