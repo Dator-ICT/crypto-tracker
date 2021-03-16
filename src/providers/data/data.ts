@@ -21,11 +21,19 @@ export class DataProvider {
   }
 
   getChart(coin) : Observable<any>{
-    return this.httpStore.get("histoday?fsym="+coin+"&tsym=ZAR&limit=30&aggregate=1" + "&api_key=1f9eae12e84f830ff2550b3c85ff7620b88f4bf3e46cad5e691347887ab16eea", HttpStoreOptions._Refresh);
+    return this.httpStore.get("histoday?fsym="+coin+"&tsym=ZAR&limit=30&aggregate=1" + "&api_key=1f9eae12e84f830ff2550b3c85ff7620b88f4bf3e46cad5e691347887ab16eea", HttpStoreOptions.LocalStore_ServerRefreshIfMissing);
+  }
+
+  refreshChart(coin) : Observable<any>{
+    return this.httpStore.get("histoday?fsym="+coin+"&tsym=ZAR&limit=30&aggregate=1" + "&api_key=1f9eae12e84f830ff2550b3c85ff7620b88f4bf3e46cad5e691347887ab16eea", HttpStoreOptions.LocalStore_ThenRefreshFromServer);
+  }
+
+  allCoinsRefresh() : Observable<any>{
+    return this.httpStore.get('all/coinlist', HttpStoreOptions._Refresh);  
   }
 
   allCoins() : Observable<any>{
-    return this.httpStore.get('all/coinlist', HttpStoreOptions.LocalStore_ThenRefreshFromServer);  
+    return this.httpStore.get('all/coinlist', HttpStoreOptions.LocalStore_ServerRefreshIfMissing);
   }
 
 }

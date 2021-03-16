@@ -16,7 +16,7 @@ export enum HttpStoreOptions {
     Server_NoLocalStorePersist,
     _Refresh,
     _RefreshIfMissing
-} 
+}
 
 @Injectable()
 export class HttpStore {
@@ -42,21 +42,21 @@ export class HttpStore {
         }
     }
 
-    public getErrorMessageFromResponse(response : any) : string {
+    public getErrorMessageFromResponse(response: any): string {
         if (!response) return "";
         if (response.ExceptionMessage) return response.ExceptionMessage;
         if (response.statusText) return response.statusText;
         return response;
     }
 
-    public remove(controllerAndParameters: string){
-            this.storage.remove(controllerAndParameters);
+    public remove(controllerAndParameters: string) {
+        this.storage.remove(controllerAndParameters);
     };
 
     public get(controllerAndParameters: string, options: HttpStoreOptions = HttpStoreOptions.LocalStore_ThenRefreshFromServer): Observable<any> {
         var optionUsesLocalStore = this.optionUsesLocalStore(options);
-        
-        return Observable.create((observer : Observer<any>) => {
+
+        return Observable.create((observer: Observer<any>) => {
             if (optionUsesLocalStore) {
                 this.storage.get(controllerAndParameters).then((data) => {
                     if (data) {
@@ -116,7 +116,7 @@ export class HttpStore {
 
     private dealWithGetErrorResponse(error: HttpErrorResponse, authAndRetryOn401: boolean, controllerAndParameters: string, resolve: (value?: any) => void, reject: (reason?: any) => void) {
         if ((error.status === 401 || error.status === 403) && authAndRetryOn401) {
-                this.fetchFromServer(controllerAndParameters, false).then((data) => resolve(data));
+            this.fetchFromServer(controllerAndParameters, false).then((data) => resolve(data));
         }
         else {
             reject(error);
