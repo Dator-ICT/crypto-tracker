@@ -36,7 +36,7 @@ export class SearchPage {
         .subscribe(res => {
          
           this.raw = res['Data'];
-          this.allcoins = res['Data'];
+          this.allcoins = this.raw;
 
           loader.dismiss().catch(()=>{});
 
@@ -53,12 +53,15 @@ export class SearchPage {
 
     let val = ev.target.value;
 
+    val = val.toUpperCase();
+
     this.allcoins = this.raw;
 
     if (val && val.trim() != '') {
 
       const filtered = Object.keys(this.allcoins)
-        .filter(key => val.toUpperCase().includes(key))
+        //.filter(key => val.toUpperCase().includes(key))
+        .filter(key => key.toUpperCase().includes(val))
         .reduce((obj,key) => {
           obj[key] = this.allcoins[key];
           return obj;

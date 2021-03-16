@@ -14,7 +14,7 @@ export class HomePage {
 
   detailToggle = [];
   objectKeys = Object.keys;
-  coins: [];
+  coins: Object[];
   details: Object;
   likedCoins = [];
   chart = [];
