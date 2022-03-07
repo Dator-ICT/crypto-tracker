@@ -9,8 +9,8 @@ import { HomePage } from '../pages/home/home';
 import { SearchPage } from '../pages/search/search';
 import { DataProvider } from '../providers/data/data';
 import { IonicStorageModule } from '@ionic/storage';
-import { HttpStore, HttpStoreOptions } from '../providers/data/http-store';
-import { HttpModule, Http, Response } from '@angular/http';
+import { HttpStore } from '../providers/data/http-store';
+import { HttpModule } from '@angular/http';
 import { HttpStoreVariables } from '../providers/data/http-store-variables';
 
 
