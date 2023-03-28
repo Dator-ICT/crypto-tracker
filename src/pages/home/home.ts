@@ -49,7 +49,7 @@ export class HomePage {
 
           console.log('Coins aren`t set');
 
-          this.likedCoins.push('BTC', 'ETH');
+          this.likedCoins.push('BTC', 'ETH','DOT','SHIB');
           this.storage.set('likedCoins', this.likedCoins);
 
           this._data.getCoins(this.likedCoins)
@@ -102,15 +102,21 @@ export class HomePage {
 
               console.log(res);
 
-              let coinHistory = res['Data'].map((a) => (a.close));
+                      
 
+              const data = res['Data'];
+              let coinClosing = data.map((a) => (a.close));
+              let coinTime = data.map((b) => (new Date(b.time)));
+
+              ;
+debugger;
               setTimeout(() => {
                 this.chart[index] = new Chart('canvas' + index, {
                   type: 'line',
                   data: {
-                    labels: coinHistory,
+                    labels: coinClosing, coinTime,
                     datasets: [{
-                      data: coinHistory,
+                      data: coinClosing, coinTime,
                       borderColor: "#3cba9f",
                       fill: false
                     }
@@ -130,10 +136,10 @@ export class HomePage {
                     },
                     scales: {
                       xAxes: [{
-                        display: false
+                        display: true
                       }],
                       yAxes: [{
-                        display: false
+                        display: true
                       }],
                     }
                   }
